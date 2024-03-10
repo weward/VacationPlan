@@ -22,7 +22,7 @@ Route::bind('holidayplan', function ($id) {
     $ttl = config('cache.default_ttl');
     return Cache::remember("holiday_plan_{$id}", $ttl, function () use ($id) {
         return HolidayPlan::findOrFail($id);
-    });
+    }); 
 });
 
 Route::middleware('auth:sanctum')->group(function() {
@@ -32,6 +32,7 @@ Route::middleware('auth:sanctum')->group(function() {
         Route::get('/{holidayplan}', [HolidayPlansController::class, 'show'])->name('holiday-plans.show');
         Route::put('/{holidayplan}', [HolidayPlansController::class, 'update'])->name('holiday-plans.update');
         Route::delete('/{holidayplan}', [HolidayPlansController::class, 'destroy'])->name('holiday-plans.destroy');
+        Route::get('/{holidayplan}/pdf', [HolidayPlansController::class, 'generatePdf'])->name('holiday-plans.pdf');
     });
 
     Route::post('logout', [Authcontroller::class, 'logout'])->name('auth.logout');

@@ -6,12 +6,13 @@ use App\Http\Requests\HolidayPlanStoreRequest;
 use App\Http\Requests\HolidayPlanUpdateRequest;
 use App\Http\Resources\HolidayPlanResource;
 use App\Models\HolidayPlan;
+use App\Services\FileGenerationService;
 use App\Services\HolidayPlanService;
 use Illuminate\Http\Request;
 
 class HolidayPlansController extends Controller
 {
-    public function __construct(private HolidayPlanService $service) {}
+    public function __construct(private HolidayPlanService $service, private FileGenerationService $fileService) {}
 
     public function index(Request $request)
     {
@@ -62,5 +63,12 @@ class HolidayPlansController extends Controller
         }
 
         return response()->json(HolidayPlan::DELETE_SUCCESS, 204);
+    }
+
+    public function generatePdf(HolidayPlan $entity)
+    {
+        $this->authorize('generatePdf', $entity);
+
+        return $this->fileService->generate($entity);
     }
 }

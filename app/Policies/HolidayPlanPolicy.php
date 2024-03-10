@@ -26,6 +26,11 @@ class HolidayPlanPolicy
     {
         return $this->checkIfAuthUserIsOwner($user, $entity);
     }
+    
+    public function generatePdf(User $user, HolidayPlan $entity)
+    {
+        return $this->checkIfAuthUserIsOwner($user, $entity);
+    }
 
     private function checkIfAuthUserIsOwner($user, $entity)
     {

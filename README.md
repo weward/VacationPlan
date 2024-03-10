@@ -89,6 +89,12 @@ sail up -d
 
 ``` 
 
+Symlink Storage
+
+```bash
+sail artisan storage:link
+```
+
 
 ## Tech Stack 
 
@@ -112,3 +118,6 @@ sail up -d
 
 ### Logout 
 - Users may log out of the system by hitting the `/api/auth/logout` endpoint.
+
+
+### Holiday Plan Creation
