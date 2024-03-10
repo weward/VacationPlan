@@ -16,7 +16,7 @@ class HolidayPlanCreateTest extends TestCase
     /**
      * As an authenticated user,
      * When creating a holiday plan with valid inputs,
-     * User must receive a 200 response with the data.
+     * User must receive a 201 response with the data.
      */
     public function test_user_creates_a_new_holiday_plan()
     {

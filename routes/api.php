@@ -18,7 +18,7 @@ use App\Models\HolidayPlan;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-Route::bind('holiday', function ($id) {
+Route::bind('holidayplan', function ($id) {
     $ttl = config('cache.default_ttl');
     return Cache::remember("holiday_plan_{$id}", $ttl, function () use ($id) {
         return HolidayPlan::findOrFail($id);
@@ -29,9 +29,9 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::prefix('holiday-plans')->group(function () {
         Route::get('/', [HolidayPlansController::class, 'index'])->name('holiday-plans.index');
         Route::post('/', [HolidayPlansController::class, 'store'])->name('holiday-plans.store');
-        Route::get('/{holiday}', [HolidayPlansController::class, 'show'])->name('holiday-plans.show');
-        Route::put('/{holiday}', [HolidayPlansController::class, 'update'])->name('holiday-plans.update');
-        Route::delete('/{holiday}', [HolidayPlansController::class, 'destroy'])->name('holiday-plans.destroy');
+        Route::get('/{holidayplan}', [HolidayPlansController::class, 'show'])->name('holiday-plans.show');
+        Route::put('/{holidayplan}', [HolidayPlansController::class, 'update'])->name('holiday-plans.update');
+        Route::delete('/{holidayplan}', [HolidayPlansController::class, 'destroy'])->name('holiday-plans.destroy');
     });
 
     Route::post('logout', [Authcontroller::class, 'logout'])->name('auth.logout');

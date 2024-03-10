@@ -26,7 +26,7 @@ class HolidayPlanResource extends JsonResource
             'created_at' => $this->created_at->copy()->diffForHumans(),
             'updated_at' => $this->updated_at->copy()->diffForHumans(),
             'user_id' => $this->user_id,
-            'user' => new UserResource($this->whenLoaded('user')),
+            'user' => new UserResource($this->user),
         ];
     }
 }

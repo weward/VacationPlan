@@ -32,7 +32,9 @@ class HolidayPlansController extends Controller
 
     public function show(Request $request, HolidayPlan $entity)
     {
-
+        $this->authorize('show', $entity);
+        
+        return new HolidayPlanResource($entity);
     }
 
     public function update(Request $request, HolidayPlan $entity)

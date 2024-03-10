@@ -8,8 +8,6 @@ interface ApiCrudInterface
     
     public function store($request);
     
-    public function fetch($id);
-
     public function update($entity);
 
     public function destroy($id);

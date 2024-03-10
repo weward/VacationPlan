@@ -28,7 +28,7 @@ class HolidayPlan extends Model
     {
         parent::boot();
 
-        static::creating(fn(HolidayPlan $entity) => $entity->user_id = auth()->user()->id);
+        static::creating(fn(HolidayPlan $entity) => $entity->user_id = $entity->user_id ?? auth()->user()->id);
     }
 
     public function user()

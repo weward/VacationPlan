@@ -11,7 +11,7 @@ class HolidayPlanService implements ApiCrudInterface
     
     public function filter($request)
     {
-        return HolidayPlan::own()->paginate(HolidayPlan::DEFAULT_PAGINATION_ROWS);
+        return HolidayPlan::with(['user'])->own()->paginate(HolidayPlan::DEFAULT_PAGINATION_ROWS);
     }
 
     public function store($request)
@@ -30,10 +30,6 @@ class HolidayPlanService implements ApiCrudInterface
         }
 
         return $entity;
-    }
-
-    public function fetch($id)
-    {
     }
 
     public function update($request)
