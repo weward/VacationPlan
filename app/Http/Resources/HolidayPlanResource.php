@@ -14,6 +14,8 @@ class HolidayPlanResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $this->load('user');
+
         return [
             'id' => $this->id,
             'title' => $this->title,
@@ -21,10 +23,10 @@ class HolidayPlanResource extends JsonResource
             'date' => $this->date,
             'location' => $this->location,
             'participants' => $this->participants,
-            'created_at' => $this->created_at,
             'created_at' => $this->created_at->copy()->diffForHumans(),
             'updated_at' => $this->updated_at->copy()->diffForHumans(),
-            'user' => new UserResource($this->user),
+            'user_id' => $this->user_id,
+            'user' => new UserResource($this->whenLoaded('user')),
         ];
     }
 }
