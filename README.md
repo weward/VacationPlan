@@ -183,5 +183,7 @@ PW: password
 - [Video - PDF Generation](https://www.youtube.com/watch?v=0FccaiT7M8Q)
 
 
+## Preview of PDF layout
 
+- [PDF Sample](http://localhost/)
 
