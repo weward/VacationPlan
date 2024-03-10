@@ -22,6 +22,11 @@ class HolidayPlanPolicy
         return $this->checkIfAuthUserIsOwner($user, $entity);
     }
 
+    public function destroy(User $user, HolidayPlan $entity)
+    {
+        return $this->checkIfAuthUserIsOwner($user, $entity);
+    }
+
     private function checkIfAuthUserIsOwner($user, $entity)
     {
         return $user->id == $entity->user_id ?: abort(401, "Action is unauthorized.");

@@ -52,7 +52,18 @@ class HolidayPlanService implements ApiCrudInterface
 
     public function destroy($id)
     {
+        try {
+            $entity = HolidayPlan::find($id);
 
+            $entity->delete();
+
+        } catch (\Throwable $th) {
+            info($th->getMessage());
+
+            return false;
+        }
+
+        return true;
     }
 
 }

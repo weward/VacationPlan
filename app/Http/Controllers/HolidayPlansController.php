@@ -53,6 +53,14 @@ class HolidayPlansController extends Controller
 
     public function destroy(HolidayPlan $entity)
     {
-        
+        $this->authorize('destroy', $entity);
+
+        $res = $this->service->destroy($entity->id);
+
+        if (!$res) {
+            return response()->json(HolidayPlan::DELETE_FAILED, 500);
+        }
+
+        return response()->json(HolidayPlan::DELETE_SUCCESS, 204);
     }
 }

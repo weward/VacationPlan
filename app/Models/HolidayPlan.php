@@ -15,6 +15,7 @@ class HolidayPlan extends Model
     const CREATE_FAILED = 'Failed to save new holiday plan.';
     const UPDATE_FAILED = 'Failed to update holiday plan.';
     const DELETE_FAILED = 'Failed to delete holiday plan.';
+    const DELETE_SUCCESS = 'Successfully deleted holiday plan.';
 
     protected $with = ['user'];
 
