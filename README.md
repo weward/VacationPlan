@@ -16,6 +16,14 @@ GitHub: https://github.com/weward
 
 # Table of Contents
 
+- [$installation](#installation)
+- [Tech Stack](#tech-stack)
+- [Stories](#stories)
+- [Tests](#tests)
+- [Documentation](#documentation)
+
+
+---
 
 ## Installation
 
@@ -61,6 +69,7 @@ sail artisan key:generate
 
 
 Update the `.env` file
+Update the `.env` file
 
 ```
 DB_CONNECTION=mysql
@@ -95,12 +104,28 @@ Symlink Storage
 sail artisan storage:link
 ```
 
+Seed the database
+
+```bash 
+sail artisan db:seed
+```
+
+Default User Credentials
+
+```bash
+Email: user@sample.com
+PW: password
+```
+
+---
 
 ## Tech Stack 
 
 - Laravel 10
 - Laravel Sanctum (Authentication)
+- barryvdh/laravel-dompdf
 
+---
 
 # Stories
 
@@ -112,7 +137,7 @@ sail artisan storage:link
 
 ### Registration 
 - Users may register to the system by providing their name, email and password
-- User receives a response with HTTP status of 200 in string format upon successful registration.
+- User receives a response with bearer token and HTTP status of 200 in string format upon successful registration.
 - User receives a response with HTTP status of 500 in string format upon failed registration.
 - User receives an error response in string format upon failed registration.
 
@@ -120,4 +145,37 @@ sail artisan storage:link
 - Users may log out of the system by hitting the `/api/auth/logout` endpoint.
 
 
-### Holiday Plan Creation
+### Holiday Plans
+- Authenticated user may create a holiday plan by providing title, description, date, location and participants (optional)
+- Authenticated user may view his/her own holiday plan
+- Authenticated user cannot view a holiday plan that belongs to another user
+- Authenticated user may update his/her own holiday plan
+- Authenticated user cannot update a holiday plan that belongs to another user
+- Authenticated user may delete his/her own holiday plan
+- Authenticated user cannot delete a holiday plan that belongs to another user
+- Authenticated user may generate a pdf from an existing holiday plan
+
+
+--- 
+
+
+# Tests
+
+- LoginTest
+- RegistrationTest
+- HolidayPlanListTest
+- HolidayPlanCreateTest
+- HolidayPlanViewTest
+- HolidayPlanUpdateTest
+- HolidayPlanDeleteTest
+
+
+# Documentation
+
+- [API Documentation](https://documenter.getpostman.com/view/6440758/2sA2xh3YT4)
+
+
+
+
+
+

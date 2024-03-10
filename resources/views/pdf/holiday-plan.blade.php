@@ -54,20 +54,18 @@
             <br />
             Date:<br /> 
             <b>{{ $data['date'] }}</b> <br />
-            Location: <b>{{ $data['location'] }}</b> <br />
+			<br />
+            Location:<br />
+			<b>{{ $data['location'] }}</b> <br />
             <br />
             Description: <br />
             <b>{{ $data['description'] }}</b> <br />
             <br />
-            By: <br />
-            <b>{{ $data['user']['name'] }}</b> <br />
-            <b>{{ $data['user']['email'] }}</b> <br />
-            <br />
-            <br />
+            
             @if (is_null($data['participants']) || !count($data['participants']))
             <p>There are no participants</p>
             @else 
-            <b>Participants</b>
+            <b>Participant/s:</b>
                 <br />
                 <br />
                 @foreach ($data['participants'] as $participant)
