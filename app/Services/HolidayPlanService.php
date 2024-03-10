@@ -32,9 +32,22 @@ class HolidayPlanService implements ApiCrudInterface
         return $entity;
     }
 
-    public function update($request)
+    public function update($request, $entity)
     {
+        try {
+            $entity->title = $request->title ?? $entity->title;
+            $entity->description = $request->description ?? $entity->description;
+            $entity->date = Carbon::parse($request->date)->format('Y-m-d') ?? $entity->date;
+            $entity->location = $request->location ?? $entity->location;
+            $entity->participants = count($request->participants) ? $request->participants : [];
 
+            $entity->save();
+        } catch (\Throwable $th) {
+            info($th->getMessage());
+        }
+
+        return $entity;
+        
     }
 
     public function destroy($id)

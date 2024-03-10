@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\HolidayStoreRequest;
+use App\Http\Requests\HolidayPlanStoreRequest;
+use App\Http\Requests\HolidayPlanUpdateRequest;
 use App\Http\Resources\HolidayPlanResource;
 use App\Models\HolidayPlan;
 use App\Services\HolidayPlanService;
@@ -19,7 +20,7 @@ class HolidayPlansController extends Controller
         return HolidayPlanResource::collection($res);
     }
 
-    public function store(HolidayStoreRequest $request)
+    public function store(HolidayPlanStoreRequest $request)
     {
         $res = $this->service->store($request);
 
@@ -37,9 +38,17 @@ class HolidayPlansController extends Controller
         return new HolidayPlanResource($entity);
     }
 
-    public function update(Request $request, HolidayPlan $entity)
+    public function update(HolidayPlanUpdateRequest $request, HolidayPlan $entity)
     {
+        $this->authorize('update', $entity);
 
+        $res = $this->service->update($request, $entity);
+
+        if (!$res) {
+            return response()->json(HolidayPlan::UPDATE_FAILED, 500);
+        }
+
+        return new HolidayPlanResource($res);
     }
 
     public function destroy(HolidayPlan $entity)
